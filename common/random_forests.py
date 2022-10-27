@@ -43,21 +43,21 @@ class RANDOM_FORESTS:
         self.train_obj_fuctions = []
 
 
-    def get_center_vector(self, individual_number, population, B, T):
+    def get_center_vector(self, individual_number, population, neighborhoods, neighborhood_size):
         """
         Calculates the center vector of a given neighborhood B
         :param individual_number: used to identify which neighborhood the individual belongs
         :param population: current population
-        :param B: neighborhood
-        :param T: neighborhood size
+        :param neighborhoods: neighborhoods
+        :param neighborhood_size: neighborhood size
         :return: the center vector of the neighborhood B
         """
         center_vector = [0] * self.problem.num_of_objectives
-        for k in range(T):
-            individual = population.population[B[individual_number][k]]
+        for k in range(neighborhood_size):
+            individual = population.population[neighborhoods[individual_number][k]]
             for l in range(len(individual.objectives)):
                 center_vector[l] += individual.objectives[l]
-        center_vector = [(i/T) for i in center_vector]
+        center_vector = [(i/neighborhood_size) for i in center_vector]
         return center_vector
 
     def local_search_bin_mucop(self, child):
@@ -80,15 +80,15 @@ class RANDOM_FORESTS:
         return copy_child
 
 
-    def local_search_rf(self, child, individual_number, population, B, T):
+    def local_search_rf(self, child, individual_number, population, neighborhoods, neighborhood_size):
         """
         Function that modifies a given offspring solution to avoid generating
         duplicated solutions
         :param child: an offspring solution
         :param individual_number: used to identify which neighborhood the individual belongs
         :param population: current population
-        :param B: neighborhood
-        :param T: neighborhood size
+        :param neighborhoods: neighborhoods
+        :param neighborhood_size: neighborhood size
         :return: a modified offspring solution with the closest estimation to the neighborhood
         center vector
         """
@@ -96,7 +96,7 @@ class RANDOM_FORESTS:
         set_forbidden = set()
         set_forbidden.add(tuple(child.features))
         childs_features = []
-        center_vector = self.get_center_vector(individual_number, population, B, T)
+        center_vector = self.get_center_vector(individual_number, population, neighborhoods, neighborhood_size)
         distances = []
         for k in range(self.problem.num_of_individuals):
             copy_child = copy.deepcopy(child)
