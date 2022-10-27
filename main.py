@@ -64,7 +64,7 @@ problem = Problem(num_of_variables=num_of_variables,
                   directions=directions)
 
 #MOEA/D-RFTS hyper-parameters
-neighborhood_size = num_of_individuals/10
+num_of_neighborhoods = 10
 criterion = "squared_error"
 max_depth = None
 max_features = 1.0
@@ -77,7 +77,7 @@ random.seed()
 
 #Calls the algorithm and sets the parameters
 iteration = Moead_Rfts(problem=problem,
-                       neighborhood_size=neighborhood_size,
+                       num_of_neighborhoods=num_of_neighborhoods,
                        criterion=criterion,
                        max_depth=max_depth,
                        max_features=max_features,

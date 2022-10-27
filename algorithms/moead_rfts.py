@@ -18,7 +18,7 @@ class Moead_Rfts:
 
     def __init__(self,
                  problem,
-                 neighborhood_size,
+                 num_of_neighborhoods,
                  criterion,
                  max_depth,
                  max_features,
@@ -29,7 +29,7 @@ class Moead_Rfts:
         """
         Class constructor
         :param problem: object of the Problem class
-        :param neighborhood_size: neighborhood size
+        :param num_of_neighborhoods: number of neighborhoods
         :param n_estimators: number of estimators (trees)
         :param criterion: criterion that defines how to measure the quality of a split
         :param max_depth: maximum depth of a tree
@@ -56,7 +56,7 @@ class Moead_Rfts:
         self.external_population = Population()
         self.z = None
         self.visited_external = set()
-        self.neighborhood_size = neighborhood_size
+        self.num_of_neighborhoods = num_of_neighborhoods
 
 
     def run(self):
@@ -68,11 +68,11 @@ class Moead_Rfts:
         weights_vectors, self.problem.num_of_individuals= self.utils.simplex_lattice_design(self.problem.num_of_individuals, self.m)
 
         #Number of individuals in a neighborhood
-        T = np.ceil(self.problem.num_of_individuals / self.neighborhood_size)
-        T = int(T)
+        neighborhood_size = int(np.ceil(self.problem.num_of_individuals / self.num_of_neighborhoods))
+
 
         #Neighborhood definition
-        B = self.utils.set_neighborhoods(weights_vectors, self.problem.num_of_individuals, self.m, T)
+        neighborhoods = self.utils.set_neighborhoods(weights_vectors, self.problem.num_of_individuals, self.m, neighborhood_size)
 
         #Initial population
         self.population = self.problem.create_initial_population()
@@ -97,7 +97,7 @@ class Moead_Rfts:
             self.problem.create_update_tabu_list(self.population)
 
             #Creates offspring and retrain the RF
-            self.offspring.create_children(self.population, B, T, self.z, weights_vectors, rf_object=self.rf)
+            self.offspring.create_children(self.population, neighborhoods, neighborhood_size, self.z, weights_vectors, rf_object=self.rf)
 
             #Non-dominated sorting to identify the non-dominated solutions
             #on the current population
