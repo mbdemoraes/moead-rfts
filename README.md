@@ -20,7 +20,7 @@ please refer to the paper:
 Decomposition-Based Evolutionary Algorithm for Multi-Objective
 Combinatorial Optimization Problems,"
 2022 IEEE Congress on Evolutionary Computation (CEC), 2022,
-pp. 1-8, doi: 10.1109/CEC55065.2022.9870412.*
+pp. 1-8, doi: [10.1109/CEC55065.2022.9870412](https://ieeexplore.ieee.org/document/9870412).*
 
 ## Contact
 If you wish to report issues or seek suport, feel free to use the issue report of this repository or to contact us.
