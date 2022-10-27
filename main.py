@@ -18,7 +18,7 @@ pp. 1-8, doi: 10.1109/CEC55065.2022.9870412.
 #optimization parameters
 num_of_variables = 100
 num_of_individuals = 100
-generations = 500
+generations = 50
 directions = ["max", "max"]
 
 #Get the profit vector from the instance file
@@ -71,7 +71,7 @@ max_features = 1.0
 min_samples_leaf = 1
 n_estimators = 100
 min_samples_split = 2
-max_samples = 100
+max_samples = 1.0
 
 random.seed()
 
