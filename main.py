@@ -18,7 +18,7 @@ pp. 1-8, doi: 10.1109/CEC55065.2022.9870412.
 #optimization parameters
 num_of_variables = 100
 num_of_individuals = 100
-generations = 50
+generations = 100
 directions = ["max", "max"]
 
 #Get the profit vector from the instance file
@@ -64,7 +64,7 @@ problem = Problem(num_of_variables=num_of_variables,
                   directions=directions)
 
 #MOEA/D-RFTS hyper-parameters
-num_of_neighborhoods = 10
+num_of_neighborhoods = 5
 criterion = "squared_error"
 max_depth = None
 max_features = 1.0

@@ -2,6 +2,7 @@
 [![GitHub](https://img.shields.io/github/license/mbdemoraes/moead-rfts
 )](https://github.com/mbdemoraes/moead-rfts/blob/main/LICENSE)
 ![GitHub](https://img.shields.io/github/v/release/mbdemoraes/moead-rfts)
+[![CodeFactor](https://www.codefactor.io/repository/github/mbdemoraes/moead-rfts/badge)](https://www.codefactor.io/repository/github/mbdemoraes/moead-rfts)
 
 Public repository with the source code of the MOEA/D-RFTS algorithm
 and a working example using the Binary Multi-Objective Unconstrained
